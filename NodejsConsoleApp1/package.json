@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-console-app1",
+  "version": "0.0.0",
+  "description": "NodejsConsoleApp1",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
