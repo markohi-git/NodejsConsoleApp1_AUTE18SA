@@ -1,5 +1,8 @@
 const express = require('express')
 const app = express()
+// tämä puuttui ja json ei toiminut
+app.use(express.json())
+//
 console.log("server start");
 let notes = [
     {
@@ -40,8 +43,27 @@ app.delete('/api/notes/:id', (req, res) => {
     //204 ei sisältöä
     res.status(204).end()
 })
-//post insert
 
+//funktio joka palauttaa notejen määrän +1
+const generateId = () => {
+    const maxId = notes.length > 0
+        ? Math.max(...notes.map(n => n.id))
+        : 0
+    return maxId + 1
+}
+//post insert
+app.post('/api/notes/', (req, res) => {
+    const body = req.body
+    const note = {
+        content: req.body.content,
+        important: req.body.important || false,
+        date: new Date(),
+        id: generateId()
+    }
+   notes = notes.concat(note)
+   console.log(note)
+   res.json(note)
+})
 
 //put update
 
