@@ -66,7 +66,22 @@ app.post('/api/notes/', (req, res) => {
 })
 
 //put update
-
+app.put('/api/notes/:id', (req, res) => {
+    const id = Number(req.params.id)
+    for (let i = 0; i < notes.length; i++) {
+        note = notes[i];
+        if (note.id == id) {
+            note.content = req.body.content
+            break;
+        }
+    }
+    res.status(204).end()
+})
+//muuttujaan req id jonka content halutaan muuttaa
+//käydään for silmukassa läpi kaikki notet
+//if id on sama kuin noten id 
+//asetetaan notelle uusi content
+//laitetaan responselle joku sopiva koodi
 
 
 app.listen(8080, () => {
